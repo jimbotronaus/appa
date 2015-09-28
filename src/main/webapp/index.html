@@ -5,6 +5,45 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+    <script>var a = 0;
+function draw() {
+ var c = document.getElementById('drawbox').getContext('2d');
+ c.save();
+ c.clearRect(0,0,400,400);
+ c.beginPath();
+ for (var z=-70; z<= 460; z+=10){
+  c.moveTo(0,z);
+  for (var x=-400; x<=400; x++) {
+   c.lineTo(x+z,z+Math.sin((z/2+x)/200*Math.PI)*10*(Math.sin((a+z/4)/50*Math.PI)*5+1.1));
+  }
+ }
+ for (var x=-400; x<=400; x+=10) {
+  c.moveTo(x,0);
+  for (var z=-70; z<= 460; z++){
+   c.lineTo(x+z,z+Math.sin((z/2+x)/200*Math.PI)*10*(Math.sin((a+z/4)/50*Math.PI)*5+1.1));
+  }
+ }
+ c.moveTo(100,100);
+ c.lineTo(200,a);
+ c.stroke();
+ c.translate(100,100);
+ c.rotate(a*Math.PI/18);
+ c.strokeRect(-a/2,-a/2,a,a);
+ c.restore()
+ a++;
+ if (a > 100) {a = 0};
+ setTimeout(draw, 20);
+}</script>
+
+
         <h1>Hello World from APPA! It is I, "Jimbotron"</h1>
+
+<div style="display:inline-block" class="item">
+	<h3>Graphics</h3>
+	<canvas id="drawbox" height="400" width="400" style="position: relative; left : 100px; width: 400px; height : 400px;border-style:solid; border-width : 3px; border-radius : 20px; background : #ddf;box-shadow: 5px 5px 10px #999;">
+	</canvas>
+	<script>draw();</script>
+</div>
+
     </body>
 </html>
